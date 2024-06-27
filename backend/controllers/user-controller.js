@@ -11,6 +11,16 @@ class UserController {
       next(e);
     }
   }
+  async getSomeUsers(req, res, next) {
+    try {
+      console.log("Запрос на /api/someUsers");
+      const users = await userService.getSomeUsers(req.query.name);
+      return res.json(users);
+    } catch (e) {
+      console.error("Ошибка при получении пользователей:", e);
+      next(e);
+    }
+  }
 }
 
 module.exports = new UserController();
