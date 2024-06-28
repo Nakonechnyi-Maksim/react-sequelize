@@ -6,29 +6,33 @@ function App() {
   const [val, setVal] = useState("");
   const [btnClicked, setBtnClicked] = useState(false);
   useEffect(() => {
-    if (btnClicked) {
-      const body = {
-        name: val,
-      };
-      async function fetchData() {
-        const url = new URL("http://localhost:5000/api/someUsers");
-        Object.keys(body).forEach((key) =>
-          url.searchParams.append(key, body[key])
-        );
-        const req = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json; charset=UTF-8",
-          },
-        });
-        const res = await req.json();
-        console.log(res);
-        setData(res);
-      }
-      fetchData();
-      setBtnClicked(false);
+    // if (val) {
+    const body = {
+      name: val,
+    };
+    async function fetchData() {
+      const url = new URL("http://176.100.124.148:5000/api/someUsers");
+
+      //Для перебора если несколько ключ/значений
+      // Object.keys(body).forEach((key) =>
+      //   url.searchParams.append(key, body[key])
+      // );
+
+      url.searchParams.append("name", body.name);
+      const req = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      });
+      const res = await req.json();
+      console.log(res);
+      setData(res);
     }
-  }, [btnClicked]);
+    fetchData();
+    setBtnClicked(false);
+    // }
+  }, [val]);
 
   function handleClick() {
     setBtnClicked(true);
