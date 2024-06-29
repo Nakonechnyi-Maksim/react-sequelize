@@ -15,9 +15,7 @@ const start = async () => {
     await sequelize.authenticate();
     await sequelize.sync();
     console.log("К бд подруб имеется");
-    app.listen(PORT, "0.0.0.0", () =>
-      console.log(`Сервер на этом порте: ${PORT}`)
-    );
+    app.listen(PORT, () => console.log(`Сервер на этом порте: ${PORT}`));
   } catch (e) {
     console.log("Ашибочка", e);
   }

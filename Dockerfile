@@ -5,7 +5,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY backend/package.json backend/package-lock.json /app/
 RUN npm install
 COPY backend /app
-RUN npm run build
+# RUN npm run build
 CMD ["node", "index.js"]
 
 # Stage 2: Build frontend
