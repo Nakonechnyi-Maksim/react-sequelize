@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 07102000maksimkaMM
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    # network_mode: "host"
+    ports:
+      - 5432:5432
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    environment:
+      - PORT=5432
+      - USER=postgres
+      - LOGIN=postgres
+      - PASSWORD=07102000maksimkaMM
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - default
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - default
+
+networks:
+  default:
+
+volumes:
+  postgres-data:

@@ -6,7 +6,7 @@ const LOGIN = process.env.LOGIN;
 const PASSWORD = process.env.PASSWORD;
 
 module.exports = new Sequelize(USER, LOGIN, PASSWORD, {
-  host: "localhost",
+  host: "db",
   port: DB_PORT,
   dialect: "postgres",
 });

@@ -4,7 +4,7 @@ class UserController {
   async getUsers(req, res, next) {
     try {
       console.log("Запрос на /api/users");
-      console.log(req);
+      // console.log(req);
       const users = await userService.getAllUsers();
       return res.json(users);
     } catch (e) {
