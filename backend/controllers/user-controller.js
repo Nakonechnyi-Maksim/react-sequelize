@@ -22,6 +22,16 @@ class UserController {
       next(e);
     }
   }
+  async getUserAddr(req, res, next) {
+    try {
+      console.log("Запрос на /api/UserAddr");
+      const users = await userService.getUserAddr();
+      return res.json(users);
+    } catch (e) {
+      console.error("Ошибка при получении пользователей:", e);
+      next(e);
+    }
+  }
 }
 
 module.exports = new UserController();
