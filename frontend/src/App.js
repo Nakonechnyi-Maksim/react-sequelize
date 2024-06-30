@@ -9,16 +9,17 @@ function App() {
     // if (val) {
     const body = {
       name: val,
+      query: val,
     };
     async function fetchData() {
-      const url = new URL("http://176.100.124.148:5000/api/someUsers");
-
+      // const url = new URL("http://176.100.124.148:5000/api/someUsers");
+      const url = new URL("http://176.100.124.148:5000/api/rawQuery");
       //Для перебора если несколько ключ/значений
       // Object.keys(body).forEach((key) =>
       //   url.searchParams.append(key, body[key])
       // );
-
-      url.searchParams.append("name", body.name);
+      // url.searchParams.append("name", body.name);
+      url.searchParams.append("query", body.query);
       const req = await fetch(url, {
         method: "GET",
         headers: {
@@ -32,7 +33,7 @@ function App() {
     fetchData();
     setBtnClicked(false);
     // }
-  }, [val]);
+  }, [btnClicked]);
 
   function handleClick() {
     setBtnClicked(true);
